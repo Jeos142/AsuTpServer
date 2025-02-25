@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AsuTpServer.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Timers;
+using AsuTpServer.Services;
 
 public  class TcpServer
 {
@@ -110,7 +111,8 @@ public  class TcpServer
             TcpListener listener = new TcpListener(IPAddress.Any, 5000);
             listener.Start();
             Console.WriteLine("TCP-сервер запущен на порту 5000.");
-
+            HttpServer httpServer = new HttpServer(this);
+            httpServer.Start();
             while (_isRunning)
             {
                 TcpClient client = listener.AcceptTcpClient();
@@ -472,6 +474,25 @@ public  class TcpServer
         catch (Exception ex)
         {
             Console.WriteLine($" Ошибка записи лога: {ex.Message}");
+        }
+    }
+    //	Запрос на вывод 1000 последних сообщений (логов) 
+    public string GetLastLogs(int count)
+    {
+        using (var context = new AppDbContext())
+        {
+            var logs = context.Logs
+                .OrderByDescending(l => l.Timestamp) //  Последние логи вверху
+                .Take(count)
+                .ToList();
+
+            StringBuilder logText = new StringBuilder();
+            foreach (var log in logs)
+            {
+                logText.AppendLine($"[{log.Timestamp:yyyy-MM-dd HH:mm:ss}] [{log.Type}] {log.Message}");
+            }
+
+            return logText.ToString();
         }
     }
 

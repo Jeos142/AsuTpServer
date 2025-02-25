@@ -140,3 +140,4 @@ C:\Users\Gosha\source\repos\AsuTpServer\AsuTpServer\obj\Debug\net8.0\refint\AsuT
 C:\Users\Gosha\source\repos\AsuTpServer\AsuTpServer\obj\Debug\net8.0\AsuTpServer.pdb
 C:\Users\Gosha\source\repos\AsuTpServer\AsuTpServer\obj\Debug\net8.0\AsuTpServer.genruntimeconfig.cache
 C:\Users\Gosha\source\repos\AsuTpServer\AsuTpServer\obj\Debug\net8.0\ref\AsuTpServer.dll
+C:\Users\Gosha\source\repos\AsuTpServer\AsuTpServer\obj\Debug\net8.0\AsuTpServer.sourcelink.json
